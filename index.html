@@ -101,7 +101,7 @@
                 event.preventDefault();
                 var query = $("#search-input").val();
                 $.ajax({
-                    url: "http://bratet.pythonanywhere.com/search",
+                    url: "http://localhost:5000/search",
                     data: { query: query },
                     success: function (response) {
                         var results = response.results;
