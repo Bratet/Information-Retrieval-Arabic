@@ -108,7 +108,7 @@ class ArabicIndexer:
         with open(filename, 'wb') as f:
             pickle.dump(self, f)
             
-    def load(self, filename):
+    def load(filename):
         with open(filename, 'rb') as f:
             return pickle.load(f)
         

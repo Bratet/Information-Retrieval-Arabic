@@ -1,1 +1,7 @@
-python-terrier
+flask
+flask_cors
+pandas
+numpy
+pyarabic
+snowballstemmer
+Arabic-Stopwords
