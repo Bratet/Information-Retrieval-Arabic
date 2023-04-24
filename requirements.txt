@@ -1,7 +1,8 @@
 flask
-flask_cors
+Flask-Cors
 pandas
 numpy
 pyarabic
 snowballstemmer
 Arabic-Stopwords
+nltk

@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from utils import ArabicIndexer, ArabicTfidfVectorizer
+from utils import ArabicIndexer
 from methods import preprocess
 import pandas as pd
 
@@ -29,7 +29,10 @@ def search():
     # look for the file diroctory with doc_id in results
     files = [data[data["docno"] == doc_id]["files"].values[0] for doc_id, _ in results]
     
-    result_docs = [{"doc_id": doc_id, "score": score, "file": file} for (doc_id, score), file in zip(results, files)]
+    # look for the title of the document with doc_id in results
+    titles = [data[data["docno"] == doc_id]["titles"].values[0] for doc_id, _ in results]
+    
+    result_docs = [{"doc_id": doc_id, "score": score, "file": file, "titles": title} for (doc_id, score), file, title in zip(results, files, titles)]
     response = {"results": result_docs}
     return jsonify(response)
 

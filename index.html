@@ -114,7 +114,7 @@
                             var documentLinkElement = $('<a class="document-link"></a>')
                                 .attr("href", result.file)
                                 .attr("data-doc-id", result.doc_id)
-                                .text("Document " + result.doc_id);
+                                .text(result.titles);
                             documentElement.append(rankingElement);
                             documentElement.append(documentLinkElement);
                             resultsContainer.append(documentElement);

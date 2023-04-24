@@ -7,7 +7,7 @@ import pickle
 class ArabicTfidfVectorizer:
     def __init__(self):
         self.term_document_frequency = defaultdict(set)
-        self.documents = pd.DataFrame(columns=["doc_id", "content"])
+        self.documents = pd.DataFrame(columns=["docno", "content"])
 
     def _calculate_query_tfidf(self, docs, term_document_frequency):
         tfidf_matrix = []
@@ -39,7 +39,6 @@ class ArabicTfidfVectorizer:
         self.documents = docs
         self.term_document_frequency = self._calculate_term_document_frequency()
         return self._calculate_tfidf(self.documents, self.term_document_frequency)
-
 
     def _calculate_term_document_frequency(self, docs=None):
         if docs is None:
@@ -73,29 +72,31 @@ class ArabicTfidfVectorizer:
             tfidf_matrix.append(tfidf_vector)
 
         return tfidf_matrix
+    
 
-class ArabicIndexer:
+class ArabicIndexer(ArabicTfidfVectorizer):  # Inherit from ArabicTfidfVectorizer
     def __init__(self):
-        self.documents = pd.DataFrame(columns=["doc_id", "content"])
+        super().__init__()  # Call the parent class constructor
         self.index = defaultdict(list)
-        self.tfidf_vectorizer = ArabicTfidfVectorizer()
 
     def add_documents(self, docs):
         for doc_id, content in docs:
-            new_doc = pd.DataFrame({"doc_id": [doc_id], "content": [content]})
+            new_doc = pd.DataFrame({"docno": [doc_id], "content": [content]})
             self.documents = pd.concat([self.documents, new_doc], ignore_index=True)
         self._create_index()
 
     def _create_index(self):
-        tfidf_matrix = self.tfidf_vectorizer.fit_transform(self.documents)
+        tfidf_matrix = self.fit_transform(self.documents)
         for doc_id, doc_vector in enumerate(tfidf_matrix):
+            docno = self.documents.iloc[doc_id]['docno']
             for term, tfidf_weight in doc_vector.items():
-                self.index[term].append((doc_id, tfidf_weight))
+                self.index[term].append((docno, tfidf_weight))
 
     def search(self, query, top_n=10):
-        query_vector = self.tfidf_vectorizer.transform([query])[0]
+        query_vector = self.transform([query])[0]  # Use self.transform() instead of self.tfidf_vectorizer.transform()
         scores = defaultdict(float)
 
+        # return the top_n documents with the highest scores their docno and score
         for term, query_weight in query_vector.items():
             if term in self.index:
                 for doc_id, doc_weight in self.index[term]:
@@ -103,6 +104,7 @@ class ArabicIndexer:
 
         sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
         return sorted_scores[:top_n]
+    
 
     def save(self, filename):
         with open(filename, 'wb') as f:
