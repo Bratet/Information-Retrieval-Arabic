@@ -31,8 +31,10 @@ def search():
     
     # look for the title of the document with doc_id in results
     titles = [data[data["docno"] == doc_id]["titles"].values[0] for doc_id, _ in results]
+
+    descriptions = [data[data["docno"] == doc_id]["description"].values[0] for doc_id, _ in results]
     
-    result_docs = [{"doc_id": doc_id, "score": score, "file": file, "titles": title} for (doc_id, score), file, title in zip(results, files, titles)]
+    result_docs = [{"doc_id": doc_id, "score": score, "file": file, "titles": title,"description":description} for (doc_id, score), file, title ,description in zip(results, files, titles,descriptions)]
     response = {"results": result_docs}
     return jsonify(response)
 
