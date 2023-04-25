@@ -4,96 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محرك بحث </title>
+    <title>محرك بحث</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .search-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 50vh;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .search-box {
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .results-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .document {
-            background-color: white;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease-in-out;
-            display: flex;
-        }
-
-        .description{
-            font-size: 0.9em;
-            color: #6c757d;
-            margin-bottom: 0;
-        }
-
-        .content{
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .document.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .document:nth-child(odd) {
-            background-color: #e9ecef;
-        }
-
-        .document-title {
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .document-link {
-            font-size: 0.9em;
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .document-link:hover {
-            text-decoration: underline;
-        }
-
-        .ranking {
-            font-weight: bold;
-            color: #6c757d;
-            font-size: 1.1em;
-            margin-right: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <h1>محرك بحث</h1>
     <div class="search-container">
         <div class="search-box">
             <form id="search-form">
                 <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    </div>
                     <input type="text" id="search-input" class="form-control" placeholder="ماذا تريد البحث عنه">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-primary">ابحث</button>
@@ -108,52 +33,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#search-form").submit(function (event) {
-                event.preventDefault();
-                var query = $("#search-input").val();
-                $.ajax({
-                    url: "http://localhost:5000/search",
-                    data: { query: query },
-                    success: function (response) {
-                        var results = response.results;
-                        console.log(results);
-                        var resultsContainer = $("#results-container");
-                        resultsContainer.empty();
-                        for (var i = 0; i < results.length; i++) {
-                            var result = results[i];
-                            var documentElement = $('<div class="document"></div>');
-                            var contentElement = $('<div class="content"></div>');
-                            var rankingElement = $('<span class="ranking"></span>').text((i + 1) + ".");
-                            var documentLinkElement = $('<a class="document-link"></a>')
-                                .attr("href", result.file)
-                                .attr("data-doc-id", result.doc_id)
-                                .text(result.titles);
-
-                            var descriptionElement = $('<p class="description"></p>').text(result.description);
-                            contentElement.append(documentLinkElement)
-                            contentElement.append(descriptionElement)
-                            documentElement.append(rankingElement);
-                            documentElement.append($('<br>'));
-                            documentElement.append(contentElement);
-                            documentElement.append($('<br>'));
-                            documentElement.append($('<br>'));
-                            resultsContainer.append(documentElement);
-
-                            // Add animation delay
-                            documentElement.css("transition-delay", (i * 0.1) + "s");
-
-                            // Make the document visible after a short delay
-                            setTimeout(function (elem) {
-                                elem.addClass("visible");
-                            }, i * 100, documentElement);
-                        }
-                    },
-                });
-            });
-        });
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
-

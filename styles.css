@@ -1,0 +1,125 @@
+body {
+    background-color: #141414;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    filter: grayscale(100%);
+    opacity: 0.2;
+}
+
+h1 {
+    background-color: #e50914; /* Red background */
+    color: #ffffff; /* White text */
+    font-size: 2.5em;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 20px auto 40px; /* Center the title and add some margin */
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.search-box {
+    width: 100%;
+    max-width: 700px;
+}
+
+.results-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.document {
+    background-color: rgba(58, 58, 58, 0.8);
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+}
+
+
+
+.description{
+    font-size: 1.2em;
+    color: #cfd2d0;
+    margin-bottom: 0;
+}
+
+.document-link {
+    font-size: 1.4em; /* Match font size to .document-title */
+    color: #e50914; /* Set link color to red */
+    text-decoration: none;
+}
+
+
+.document.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.document-link:hover {
+    text-decoration: underline;
+}
+
+.ranking {
+    font-weight: bold;
+    color: #6c757d;
+    font-size: 1.1em;
+    margin-right: 10px;
+}
+
+.input-group {
+    background-color: #444444;
+    border-radius: 5px;
+}
+
+.form-control {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.2em; /* Increase the font size */
+    padding: 10px 15px; /* Add padding for a bigger input box */
+}
+
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input-group-text {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.2em; /* Increase the font size to match the search input */
+}
+.btn {
+    background-color: #e50914;
+    border: none;
+}
