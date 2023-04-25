@@ -6,3 +6,4 @@ pyarabic
 snowballstemmer
 Arabic-Stopwords
 nltk
+gunicorn==19.7.1

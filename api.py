@@ -38,5 +38,3 @@ def search():
     response = {"results": result_docs}
     return jsonify(response)
 
-if __name__ == "__main__":
-    app.run(debug=False)
