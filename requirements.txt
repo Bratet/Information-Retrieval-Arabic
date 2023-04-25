@@ -1,6 +1,6 @@
 flask
 Flask-Cors
-pandas==1.1.5
+pandas==1.4.4
 numpy
 pyarabic
 snowballstemmer
