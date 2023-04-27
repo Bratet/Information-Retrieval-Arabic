@@ -50,6 +50,8 @@ h1 {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    direction: rtl;
+    text-align: right;
 }
 
 .document {
@@ -122,4 +124,26 @@ h1 {
 .btn {
     background-color: #e50914;
     border: none;
+}
+
+.document-container {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    direction: rtl;
+    text-align: right;
+}
+
+.document-title {
+    color: red;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.document-content {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: black;
 }

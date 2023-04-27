@@ -12,6 +12,21 @@ indexer = ArabicIndexer.load("indexer/indexer.pkl")
 
 data = pd.read_csv("data.csv")
 
+def fetch_document_data(doc_id):
+    
+    document_row = data[data["docno"] == doc_id]
+
+    if document_row.empty:
+        return None
+
+    document_data = {
+        "title": document_row["titles"].values[0],
+        "raw_texts": document_row["raw_texts"].values[0]
+    }
+
+    return document_data
+
+
 @app.route("/search", methods=["GET"])
 def search():
     query = request.args.get("query", "")
@@ -38,3 +53,17 @@ def search():
     response = {"results": result_docs}
     return jsonify(response)
 
+@app.route("/document", methods=["GET"])
+def get_document():
+    doc_id = request.args.get("doc_id", None)
+
+    if doc_id is None:
+        return jsonify({"error": "doc_id is required"}), 400
+
+    # Fetch the document data from your data source using the doc_id
+    document_data = fetch_document_data(doc_id)
+
+    if document_data is None:
+        return jsonify({"error": "Document not found"}), 404
+
+    return jsonify(document_data)

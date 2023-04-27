@@ -16,7 +16,7 @@ $(document).ready(function () {
                     var contentElement = $('<div class="content"></div>');
                     var rankingElement = $('<span class="ranking"></span>').text((i + 1) + ".");
                     var documentLinkElement = $('<a class="document-link"></a>')
-                        .attr("href", result.file)
+                        .attr("href", "document.html?doc_id=" + result.doc_id)
                         .attr("data-doc-id", result.doc_id)
                         .text(result.titles);
 
