@@ -30,7 +30,7 @@ The web application exposes the indexer's functionality via two HTTP endpoints:
 2. `/document`: Accepts a GET request with parameter "doc_id". Returns the content of the document with the given ID.
 
 ## How to Use
-To use the API, navigate to the hosted website on [ensias.ma](http://ensias.ma). Please note, as it is hosted on a free server, it may take up to 5 minutes to warm up and respond to the first request.
+To use the API, navigate to the hosted website on [ensias-nlp.ma](http://www.ensias-nlp.ma/nlp/RechercheIinformation/). Please note, as it is hosted on a free server, it may take up to 5 minutes to warm up and respond to the first request.
 
 ### Example:
 
