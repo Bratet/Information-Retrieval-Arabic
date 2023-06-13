@@ -7,7 +7,7 @@ The key functionality is implemented in Python, using several libraries that cat
 
 A Flask-based web application is also part of the project to expose this functionality as an API. The API has two primary endpoints; a search endpoint that accepts a query and returns the top relevant documents, and a document endpoint to retrieve the specific document's data.
 
-The web application is hosted on [ensias.ma](http://ensias.ma). Please give it about 5 minutes to warm up when testing the application for the first time.
+The web application is hosted on [ensias-nlp.ma](http://www.ensias-nlp.ma/nlp/RechercheIinformation/). Please give it about 5 minutes to warm up when testing the application for the first time.
 
 ## How it Works
 
